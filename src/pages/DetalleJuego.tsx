@@ -7,6 +7,9 @@ const DetalleJuego = () => {
   const { id } = useParams<{ id: string }>();
   const juego = getGameById(Number(id));
 
+  // Convertir rating de estrellas a número (antes de usar en useSEO)
+  const ratingNumber = juego ? (juego.ratingNumber || (juego.rating.match(/⭐/g) || []).length) : 0;
+
   useSEO({
     title: juego?.nombre || 'Juego no encontrado',
     description: juego?.descripcion || 'Detalles del juego',
@@ -32,9 +35,6 @@ const DetalleJuego = () => {
       </div>
     );
   }
-
-  // Convertir rating de estrellas a número
-  const ratingNumber = juego.ratingNumber || (juego.rating.match(/⭐/g) || []).length;
   const ratingDecimal = ratingNumber * 1.6; // Convertir 1-5 a 0-8 escala
 
   // Generar tags desde categoría y nombre

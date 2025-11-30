@@ -624,10 +624,6 @@ const IntroAnimation = () => {
                 {/* Subtítulo */}
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1 }}
-                  className="mt-6 md:mt-8 text-neon-blue text-lg md:text-2xl lg:text-3xl font-pixel"
-                  style={{ textShadow: '0 0 40px rgba(0,240,255,0.8)' }}
                   animate={{
                     opacity: [0.7, 1, 0.7],
                     y: [0, -5, 0],
@@ -635,7 +631,10 @@ const IntroAnimation = () => {
                   transition={{
                     duration: 2,
                     repeat: Infinity,
+                    delay: 1,
                   }}
+                  className="mt-6 md:mt-8 text-neon-blue text-lg md:text-2xl lg:text-3xl font-pixel"
+                  style={{ textShadow: '0 0 40px rgba(0,240,255,0.8)' }}
                 >
                   Next Level Gaming
                 </motion.p>
