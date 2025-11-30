@@ -28,6 +28,7 @@ const IntroAnimation = () => {
     color: string
     life: number
   }>>([])
+  const startTimeRef = useRef<number | null>(null)
 
   useEffect(() => {
     const introShown = localStorage.getItem('intro_seen')
@@ -49,9 +50,10 @@ const IntroAnimation = () => {
     ]
 
     const startTime = performance.now()
-    const startTimeRef = useRef(startTime)
+    startTimeRef.current = startTime
 
     const animate = () => {
+      if (!startTimeRef.current) return
       const elapsed = performance.now() - startTimeRef.current
 
       const currentPhaseIndex = phases.findIndex(
@@ -103,6 +105,7 @@ const IntroAnimation = () => {
 
     // Iniciar typing cuando entre en fase de terminal
     const checkPhase = setInterval(() => {
+      if (!startTimeRef.current) return
       const elapsed = performance.now() - startTimeRef.current
       const currentPhaseValue = phases.findIndex(
         phase => elapsed >= phase.start * 1000 && elapsed < phase.end * 1000
