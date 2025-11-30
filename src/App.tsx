@@ -14,8 +14,8 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (
-    <ErrorBoundary>
-      <Router>
+    <Router>
+      <ErrorBoundary>
         <Layout>
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
@@ -28,8 +28,8 @@ function App() {
             </Routes>
           </Suspense>
         </Layout>
-      </Router>
-    </ErrorBoundary>
+      </ErrorBoundary>
+    </Router>
   );
 }
 
